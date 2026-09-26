@@ -14,7 +14,7 @@ messages =  []
 
 def send_message():
     # # payload_message = payload(message)
-    client = discord.Client(intents=intents)
+    client = discord.Client(intents=intents, max_messages=2)
 
     @client.event
     async def on_ready():
@@ -26,20 +26,24 @@ def send_message():
             return
 
         if message.content.startswith(f"<@{client.user.id}>"):
-            displayname = client.get_user(message.author.id).display_name
+            # displayname = client.get_user(message.author.id).display_name
             msg = message.content.removeprefix(f"<@{client.user.id}>").lstrip(" ")
 
             answer = msg
 
-            await message.channel.send(
-                "espera, ele tá pensando"
+            reply = await message.reply(
+                "espera, eu to pensando, não me judia pufavo"
             )
 
-            content = ai_answer(answer)
+            content, historymsgs = ai_answer(answer)
 
-            await message.channel.edit(content=f"```{content}```\n" \
-                                                "-# ele só diz merda, não confie em nada do que ele diz"
+            print(f"{'-' * 60}\n{historymsgs}")
+
+            await reply.edit(content=f"```{content}```\n" \
+                                        "-# eu só falo merda, não escuta nada do que eu digo"
             )
+
+            # print("acabou")
 
     client.run(TOKEN)
 
