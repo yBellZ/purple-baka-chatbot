@@ -11,6 +11,7 @@ intents = discord.Intents.all()
 intents.message_content = True
 
 messages =  []
+satono = discord.PartialEmoji.from_str("<:satono:1553403166081556640>")
 
 def send_message():
     # # payload_message = payload(message)
@@ -18,12 +19,14 @@ def send_message():
 
     @client.event
     async def on_ready():
-        await client.change_presence(status=discord.Status.online,
-                                     activity=discord.CustomActivity(
-                                         emoji=discord.PartialEmoji.from_str("<:E_bleh:1502228749226217604>", client=client),
-                                         name="o jogo, vc perdeu"
-                                    ))
-        #emoji="<:E_bleh:1502228749226217604>"
+        await client.change_presence(
+            status=discord.Status.online,
+            activity=discord.Game(
+                name=f"o jogo, vc perdeu",
+            )
+        )
+
+        #<:satono:1553403166081556640>
 
     @client.event
     async def on_message(message):
