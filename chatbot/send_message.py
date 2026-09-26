@@ -18,7 +18,12 @@ def send_message():
 
     @client.event
     async def on_ready():
-        await client.change_presence(status=discord.Status.online)
+        await client.change_presence(status=discord.Status.online,
+                                     activity=discord.CustomActivity(
+                                         emoji=discord.PartialEmoji.from_str("<:E_bleh:1502228749226217604>", client=client),
+                                         name="o jogo, vc perdeu"
+                                    ))
+        #emoji="<:E_bleh:1502228749226217604>"
 
     @client.event
     async def on_message(message):
@@ -26,7 +31,6 @@ def send_message():
             return
 
         if message.content.startswith(f"<@{client.user.id}>"):
-            # displayname = client.get_user(message.author.id).display_name
             msg = message.content.removeprefix(f"<@{client.user.id}>").lstrip(" ")
 
             answer = msg
