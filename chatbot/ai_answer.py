@@ -20,12 +20,12 @@ def ai_answer(answer, history) -> tuple[str, list]:
     completion = client.chat.completions.create(
         model="Qwen/Qwen2.5-0.5B-Instruct-GGUF:Q4_K_M",
         max_tokens=700,
-        temperature=4,
-        top_p=0.8,
+        temperature=1.3,      # já é bem "solto" pra um 0.5B, sem quebrar tudo
+        top_p=0.95,
         extra_body={
-            "top_k": 20,
-            "min_p": 0.0,
-            "repetition_penalty": 1.3,
+            "top_k": 100,      # deixa mais opções na mesa em vez de achatar tudo igual
+            "min_p": 0.02,     # corta o "lixo estatístico" do fundo do poço sem matar a variedade
+            "repetition_penalty": 1.15,
         },
         messages=history,
     )
