@@ -21,7 +21,7 @@ def sendto_ai(guild_id, msg):
     print(guild_id)
     print(f"{'-' * 60}\n{historymsgs[guild_id]}")
 
-    return content, historymsgs[guild_id]
+    return content
 
 def send_message():
     @client.event
@@ -40,7 +40,7 @@ def send_message():
 
             if msg:
                 reply = await message.reply("espera, eu to pensando, não me judia pufavo")
-                content, history = sendto_ai(message.guild.id, msg)
+                content = sendto_ai(message.guild.id, msg)
 
                 await reply.edit(content=f"```{content}```\n" \
                                             "-# eu só falo merda, não escuta nada do que eu digo"
