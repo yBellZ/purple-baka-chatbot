@@ -19,7 +19,7 @@ set -euo pipefail
 # --- Configurações (ajuste se necessário) -----------------------------------
 SERVICE_NAME="purple-baka-chatbot"
 SCRIPT_REL_PATH="chatbot/send_message.py"
-SERVICE_TYPE="oneshot"   # troque para "simple" se o script ficar rodando em loop
+SERVICE_TYPE="simple"    # "simple" = processo fica rodando (bot); "oneshot" = roda e sai
 
 # --- Descobre o diretório do projeto a partir da localização deste script --
 # Assume que este install script está na raiz do projeto
@@ -105,6 +105,8 @@ User=${RUN_USER}
 WorkingDirectory=${PROJECT_DIR}
 Environment=PATH=${USER_HOME}/.local/bin:/usr/local/bin:/usr/bin:/bin
 ExecStart=${UV_BIN} run ${SCRIPT_PATH}
+Restart=on-failure
+RestartSec=5
 
 [Install]
 WantedBy=multi-user.target
