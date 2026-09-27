@@ -8,15 +8,13 @@ LLAMA_URL = os.environ["LLAMA_URL"]
 
 client = openai.OpenAI(base_url=LLAMA_URL, api_key="no-key-required")
 
-history = []
-
 def history_resize(history, maxmessages=10):
     if len(history) > maxmessages:
         history = history[-maxmessages:]
 
     return history
 
-def ai_answer(answer) -> str:
+def ai_answer(answer, history) -> tuple[str, list]:
     history.append({"role": "user", "content": answer})
 
     completion = client.chat.completions.create(
@@ -38,6 +36,7 @@ def ai_answer(answer) -> str:
 
     history_resize(history)
 
+    deu_errado = None
     if choice.finish_reason == "length":
         deu_errado = "Bell do código: ele provavelmente ficou repetindo as mesmas palavras e excedeu o limite de tokens que eu coloquei"
         print(deu_errado)
