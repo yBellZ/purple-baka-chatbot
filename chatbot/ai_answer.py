@@ -8,7 +8,7 @@ LLAMA_URL = os.environ["LLAMA_URL"]
 
 client = openai.OpenAI(base_url=LLAMA_URL, api_key="no-key-required")
 
-def history_resize(history, maxmessages=5):
+def history_resize(history, maxmessages=20):
     if len(history) > maxmessages:
         history = history[-maxmessages:]
 
