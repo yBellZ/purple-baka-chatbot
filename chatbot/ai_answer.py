@@ -20,7 +20,7 @@ def ai_answer(answer, history) -> tuple[str, list]:
     completion = client.chat.completions.create(
         model="Qwen/Qwen2.5-0.5B-Instruct-GGUF:Q4_K_M",
         max_tokens=1700,
-        temperature=1,
+        temperature=2,
         top_p=0.8,
         extra_body={
             "top_k": 20,
