@@ -11,6 +11,7 @@ dependencies = [
     "discord>=2.3.2",
     "dotenv>=0.9.9",
     "openai>=3.19.2",
+    "pywin32>=312",
 ]
 
 [project.scripts]
