@@ -1,17 +1,7 @@
-import win32con
-import win32api
 import discord
 import asyncio
 import signal
 import os
-
-events = {
-    win32con.CTRL_C_EVENT,
-    win32con.CTRL_BREAK_EVENT,
-    win32con.CTRL_CLOSE_EVENT,
-    win32con.CTRL_LOGOFF_EVENT,
-    win32con.CTRL_SHUTDOWN_EVENT,
-}
 
 async def change_presence(client):
     try:
@@ -34,6 +24,17 @@ def handle_shutdown(client):
         )
 
     if os.name == "nt":
+        import win32con
+        import win32api
+
+        events = {
+            win32con.CTRL_C_EVENT,
+            win32con.CTRL_BREAK_EVENT,
+            win32con.CTRL_CLOSE_EVENT,
+            win32con.CTRL_LOGOFF_EVENT,
+            win32con.CTRL_SHUTDOWN_EVENT,
+        }
+
         def handler(ctrl_type):
             if ctrl_type in events:
                 futuro = asyncio.run_coroutine_threadsafe(change_presence(client), loop)
