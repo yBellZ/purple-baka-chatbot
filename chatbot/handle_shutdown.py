@@ -3,6 +3,7 @@ import asyncio
 import signal
 import os
 
+
 async def change_presence(client):
     try:
         await client.change_presence(
@@ -13,6 +14,7 @@ async def change_presence(client):
         print("Falha ao mudar status:", e)
 
     await client.close()
+
 
 def handle_shutdown(client):
     loop = asyncio.get_running_loop()

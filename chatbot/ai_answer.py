@@ -5,7 +5,6 @@ import os
 load_dotenv()
 
 LLAMA_URL = os.environ["LLAMA_URL"]
-
 client = openai.OpenAI(base_url=LLAMA_URL, api_key="no-key-required")
 
 def history_resize(history, maxmessages=20):
