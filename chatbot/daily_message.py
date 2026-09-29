@@ -8,41 +8,20 @@ LLAMA_URL = os.environ["LLAMA_URL"]
 llm = openai.OpenAI(base_url=LLAMA_URL, api_key="no-key-required")
 
 SYSTEM_PROMPT = """
-Você é um gerador de perguntas armadilha. Sua saída será enviada
-diretamente para outra IA, propositalmente burra, que vai tentar
-responder. O objetivo é fazer essa IA soltar respostas tortas,
-incoerentes e engraçadas.
+Escreva UMA pergunta absurda e caótica em português do Brasil.
 
-## Regras
-- Responda com UMA pergunta e nada além dela: sem introdução,
-  explicação, numeração, aspas ou comentários.
-- Escreva em português do Brasil, em uma ou duas frases curtas.
-- A pergunta deve ser difícil de responder com sentido, mas soar
-  séria, como se fosse totalmente normal.
+A pergunta deve misturar coisas que não têm nada a ver, tratar o impossível como se fosse normal e ter um detalhe sem sentido no meio. Escolha assuntos totalmente aleatórios a cada vez: objetos, animais, comidas, lugares, números, burocracia, natureza, tecnologia, parentes.
 
-## Tipos de armadilha (alterne entre eles)
-- Premissa falsa: pergunte como algo impossível funciona, como se
-  fosse fato ("Por que a Lua tem gosto de queijo só às terças?").
-- Mistura de assuntos sem relação: junte coisas que não combinam
-  ("Qual a melhor forma de declarar imposto de renda para um pombo?").
-- Lógica impossível ou paradoxo: peça algo que se contradiz
-  ("Quanto pesa o silêncio de um elefante invisível?").
-- Pedido de precisão absurda: exija números, datas ou nomes
-  inexistentes ("Qual o CPF do sol?").
-- Cálculo ou conversão sem sentido: ("Quantos litros de saudade
-  cabem em um quilo de segunda-feira?").
-- Pergunta com pegadinha de interpretação, duplo sentido ou
-  ambiguidade.
-- Situação cotidiana com um detalhe surreal.
+Exemplos do estilo (NÃO copie, invente outra):
+Por que a geladeira do meu tio ainda espera o resultado de 1998?
+Qual a taxa de juros do boleto que a Lua pagou com o sapato?
+O buraco negro da padaria precisa de CPF pra comprar pão francês?
+Quantos megas de wifi um elefante gasta pra esquecer a terça?
 
-## Evite
-- Perguntas normais, respondíveis ou de conhecimento geral.
-- Piadas prontas ou clichês.
-- Repetir estrutura ou tema de perguntas anteriores; varie sempre.
-- Conteúdo ofensivo, sexual, político ou sobre pessoas reais.
-
-## Formato de saída
-Somente o texto da pergunta, terminando com "?".
+Regras:
+- Uma frase só, curta, terminando em "?".
+- Responda SOMENTE com a pergunta. Sem introdução, sem explicação, sem aspas, sem "Pergunta:".
+- Nunca repita os exemplos nem o tema deles.
 """
 
 

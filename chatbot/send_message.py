@@ -43,6 +43,7 @@ def find_channel(guild):
     return discord.utils.find(
         lambda c: "geral" in c.name
         and "staff" not in c.name
+        and "log" not in c.name
         and c.permissions_for(guild.me).send_messages,
         guild.text_channels,
     )
@@ -111,7 +112,7 @@ async def on_message(message):
             content = await asyncio.to_thread(sendto_ai, message.guild.id, msg)
         except Exception:
             logging.exception("Falha ao responder em %s", message.guild.id)
-            await reply.edit(content="deu ruim aqui, tenta de novo depois")
+            await reply.edit(content="deu algo errado")
             return
 
         await reply.edit(
